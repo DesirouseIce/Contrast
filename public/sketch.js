@@ -89,10 +89,9 @@ function setup() {
 function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
   playersPos = p5.Vector.fromAngle(data.heading + radians(90), 3);
-  playersPos.add(data.x, data.y);
   pos1 = playerPos.sub(3);
   pos2 = playerPos.add(3);
-  players.push(new Boundary(pos1.x, pos1.y, pos2.x, pos2.y));
+  players.push(new Boundary(pos1.x + data.x, pos1.y + data.y, pos2.x + data.x, pos2.y + data.y));
 }
 
 function changeFOV(){
