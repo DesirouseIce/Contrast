@@ -31,10 +31,7 @@ function setup() {
   setInterval(function(){
     startTime = Date.now();
     socket.emit('pingg');
-  }, 2000);
-  
-  setInterval(function(){
-    const fr = frameRate();
+    fr = frameRate();
   }, 2000);
 
   socket.on('pongg', function(){
@@ -98,7 +95,8 @@ function recivePos(data, playerCnt) {
   const pos1 = createVector(data.x, data.y);
   const pos2 = createVector(data.x, data.y);
   pos1.add(playersPos);
-  pos2.sub(playersPos);
+  playersPos.setMag(-3);
+  pos2.add(playersPos);
   players.push(new Boundary(pos1.x, pos1.y, pos2.x, pos2.y));
   console.log('pos1: ' + pos1);
   console.log('pos2: ' + pos2);
