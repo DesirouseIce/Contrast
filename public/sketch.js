@@ -19,6 +19,7 @@ let sliderRayAngle;
 var socket;
 var startTime;
 var latency = 0;
+let fr = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
