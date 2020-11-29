@@ -95,8 +95,8 @@ function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
   playersPos = p5.Vector.fromAngle(data.heading + radians(90));
   playersPos.setMag(3)
-  const pos1 = p5.createVector(data.x, data.y);
-  const pos2 = p5.createVector(data.x, data.y);
+  const pos1 = createVector(data.x, data.y);
+  const pos2 = createVector(data.x, data.y);
   pos1.add(playersPos);
   pos2.sub(playersPos);
   players.push(new Boundary(pos1.x, pos1.y, pos2.x, pos2.y));
