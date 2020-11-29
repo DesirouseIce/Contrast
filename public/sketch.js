@@ -31,8 +31,10 @@ function setup() {
   setInterval(function(){
     startTime = Date.now();
     socket.emit('pingg');
-    fr = frameRate();
   }, 2000);
+  setInterval(function(){
+    fr = frameRate();
+  }, 500);
 
   socket.on('pongg', function(){
     latency = Date.now() - startTime;
@@ -92,8 +94,8 @@ function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
   playersPos = p5.Vector.fromAngle(data.heading + radians(90));
   playersPos.setMag(3)
-  const pos1 = createVector(data.x, data.y);
-  const pos2 = createVector(data.x, data.y);
+  let pos1 = createVector(data.x, data.y);
+  let pos2 = createVector(data.x, data.y);
   pos1.add(playersPos);
   playersPos.setMag(-3);
   pos2.add(playersPos);
