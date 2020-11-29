@@ -114,7 +114,8 @@ function draw() {
 
   var data = {
     x: particle.pos.x,
-    y: particle.pos.y
+    y: particle.pos.y,
+    heading: particle.heading
   }
 
   socket.emit('sendPos', data);
