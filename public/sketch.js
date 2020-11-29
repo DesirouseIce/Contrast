@@ -92,14 +92,7 @@ function setup() {
 
 function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
-  x = 3 * cos(data.heading);
-  y = 3 * sin(data.heading);
-  players.push(new Boundary(x + (data.x - 3), y, x + (data.x + 3), y));
-  x1 = x+(data.x - 3);
-  y1 = y+(data.y);
-  console.log('x: ' + x1);
-  console.log('y: ' + y1);
-  console.log('heading: ' + data.heading);
+  players.push(new Boundary(data.x, data.y, data.x, data.y));
 }
 
 function changeFOV(){
