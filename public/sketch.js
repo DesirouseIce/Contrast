@@ -31,6 +31,10 @@ function setup() {
     startTime = Date.now();
     socket.emit('pingg');
   }, 2000);
+  
+  setInterval(function(){
+    const fr = frameRate();
+  }, 2000);
 
   socket.on('pongg', function(){
     latency = Date.now() - startTime;
@@ -95,6 +99,8 @@ function recivePos(data, playerCnt) {
   pos1.add(playersPos);
   pos2.sub(playersPos);
   players.push(new Boundary(pos1.x, pos1.y, pos2.x, pos2.y));
+  console.log('pos1: ' + pos1);
+  console.log('pos2: ' + pos2);
 }
 
 function changeFOV(){
@@ -192,7 +198,6 @@ function draw() {
   }
   pop();
   
-  const fr = frameRate();
   fill(255);
   push();
   stroke(0);
