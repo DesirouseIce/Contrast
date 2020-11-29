@@ -95,8 +95,8 @@ function recivePos(data, playerCnt) {
   x = 3 * cos(data.heading);
   y = 3 * sin(data.heading);
   players.push(new Boundary(x + (data.x - 3), y, x + (data.x + 3), y));
-  console.log('x: ' + x);
-  console.log('y: ' + y);
+  console.log('x: ' + x+(data.x - 3));
+  console.log('y: ' + y+(data.y));
   console.log('heading: ' + data.heading);
 }
 
