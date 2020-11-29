@@ -93,7 +93,7 @@ function setup() {
 function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
   push();
-  rotate(data.heading());
+  rotate(data.heading);
   players.push(new Boundary(data.x - 3, data.y, data.x + 3, data.y));
   console.log('pos1: ' + pos1);
   console.log('pos2: ' + pos2);
