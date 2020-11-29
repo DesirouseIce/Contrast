@@ -88,7 +88,7 @@ function setup() {
 
 function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
-  playersPos = p5.Vector.fromAngle(data.heading + PI/2);
+  playersPos = p5.Vector.fromAngle(data.heading + radians(90));
   playersPos.add(data.x, data.y);
   pos1 = playerPos.sub(3);
   pos2 = playerPos.add(3);
