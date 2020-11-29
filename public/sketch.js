@@ -170,7 +170,7 @@ function draw() {
    //yoff += 0.01;
   
   let scene = (particle.look(walls));
-  const w = width / scene.length;
+  let w = width / scene.length;
   push();
   translate(0, 0);
   for (let i = 0; i < scene.length; i++){
@@ -186,6 +186,7 @@ function draw() {
   }
 
   scene = (particle.look(players));
+  w = width / scene.length;
   for (let i = 0; i < scene.length; i++){
     noStroke();
     const sq = scene[i] * scene[i];
