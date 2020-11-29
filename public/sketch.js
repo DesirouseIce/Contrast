@@ -18,7 +18,7 @@ let sliderRayAngle;
 
 var socket;
 var startTime;
-var latency = 1000000;
+var latency = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -88,7 +88,7 @@ function setup() {
 
 function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
-  playersPos = p5.Vector.fromAngle(data.heading + radians(90));
+  playersPos = p5.Vector.fromAngle(data.heading + radians(90), 3);
   playersPos.add(data.x, data.y);
   pos1 = playerPos.sub(3);
   pos2 = playerPos.add(3);
