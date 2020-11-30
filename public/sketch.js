@@ -96,7 +96,7 @@ function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
   let x = 3 * cos(data.heading + radians(90));
   let y = 3 * sin(data.heading + radians(90));
-  players.push(new Boundary(x + data.x, y + data.y, x - data.x, y + data.y));
+  players.push(new Boundary(data.x + x, data.y + y,data.x - x,data.y - y));
 }
 
 function changeFOV(){
