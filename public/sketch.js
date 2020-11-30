@@ -79,10 +79,10 @@ function setup() {
     }
     walls[i] = new Boundary(x1 - 740, y1 - 410, x2 - 740, y2 - 410);
   }
-  walls.push(new Boundary(0, 0, width, 0));
-  walls.push(new Boundary(width, 0, width, height));
-  walls.push(new Boundary(width, height, 0, height));
-  walls.push(new Boundary(0, height, 0, 0));
+  walls.push(new Boundary(0, 0, sceneW, 0));
+  walls.push(new Boundary(sceneW, 0, sceneW, sceneH));
+  walls.push(new Boundary(sceneW, sceneH, 0, sceneH));
+  walls.push(new Boundary(0, sceneH, 0, 0));
   particle = new Particle();
   // sliderFOV = createSlider(60, 120, 80, 5);
   // sliderFOV.input(changeFOV);
@@ -92,7 +92,11 @@ function setup() {
 
 function recivePos(data, playerCnt) {
   if (players.length > playerCnt) players = [];
-  players.push(new Boundary(data.x - 3, data.y, data.x + 3, data.y));
+  let x1 = 3 * cos(data.heading);
+  let y1 = 3 * sin(data.heading);
+  let x2 = 3 * cos(-data.heading);
+  let y2 = 3 * sin(-data.heading);
+  players.push(new Boundary(x1 + data.x, y1 + data.y, x2 + data.x, y2 + data.y));
 }
 
 function changeFOV(){
@@ -116,9 +120,9 @@ function draw() {
   socket.emit('sendPos', data);
 
     if (keyIsDown(LEFT_ARROW)){
-      particle.rotate(-0.05);
+      particle.rotate(-0.06);
     } else if (keyIsDown(RIGHT_ARROW)){
-      particle.rotate(0.05);
+      particle.rotate(0.06);
     }
     if (keyIsDown(87)){
       particle.move(3, walls);
