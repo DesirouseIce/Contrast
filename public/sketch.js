@@ -11,8 +11,8 @@ let headingLogged;
 let renderObjects = [];
 let reconnectMsg = false;
 
-const sceneH = 720 * 1.5;
-const sceneW = 1280 * 1.5;
+const sceneH = 720;
+const sceneW = 1280;
 let sliderFOV;
 let sliderRayAngle;
 
@@ -140,7 +140,7 @@ function draw() {
       resizeCanvas(displayWidth, displayHeight);
     }
 
-  if (particle.pos.x == xLogged && particle.pos.y == yLogged && particle.heading == headingLogged && inactivityTimer != 3000){
+  if (particle.pos.x == xLogged && particle.pos.y == yLogged && particle.heading == headingLogged && inactivityTimer != 3000 && !focused){
     inactivityTimer++;
   } else if (particle.pos.x != xLogged || particle.pos.y != yLogged || particle.heading != headingLogged || inactivityTimer != 3000){
     inactivityTimer = 0;
