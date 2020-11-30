@@ -83,7 +83,7 @@ function setup() {
   walls.push(new Boundary(sceneW, 0, sceneW, sceneH));
   walls.push(new Boundary(sceneW, sceneH, 0, sceneH));
   walls.push(new Boundary(0, sceneH, 0, 0));
-  particle = new Particle();
+  particle = new Particle(sceneW, sceneH);
   // sliderFOV = createSlider(60, 120, 80, 5);
   // sliderFOV.input(changeFOV);
   // sliderRayAngle = createSlider(5, 40, 10, 2);
