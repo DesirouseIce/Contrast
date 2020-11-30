@@ -1,11 +1,11 @@
 class Particle {
-  constructor() {
+  constructor(sceneW, sceneH) {
     this.fov = 90;
     this.rAngle = 0.1; // - ray angle (adjusts the resolution and amt of rays)
-    this.spawnloc = [10, width - 10];
-    this.pos = createVector(random(this.spawnloc), random(height/2 - 40, height/2 + 40));
+    this.spawnloc = [10, sceneW - 10];
+    this.pos = createVector(random(this.spawnloc), random(sceneH/2 - 40, sceneH/2 + 40));
     this.rays = [];
-    if (this.pos.x > width/2){
+    if (this.pos.x > sceneW/2){
       this.heading = PI/1;
     } else this.heading = 0;
     for (let a = -this.fov/2; a < this.fov/2; a += this.rAngle) { // - set's up rays
