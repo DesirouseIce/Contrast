@@ -48,4 +48,8 @@ class Ray{
       return;
     }
   }
+  
+  shoot(players, walls){
+    
+  }
 }
