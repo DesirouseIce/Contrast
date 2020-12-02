@@ -111,13 +111,13 @@ function changeRayAngle(){
 
 function draw() {
 
-  var data = {
-    x: particle.pos.x,
-    y: particle.pos.y,
-    heading: particle.heading
+  const position = createVector.fromAngle(particle.heading);
+  position.add(particle.pos.x, particle.pos.y);
+  var myPos = {
+    pos: = position
   }
 
-  socket.emit('sendPos', data);
+  socket.emit('sendPos', myPos);
 
     if (keyIsDown(LEFT_ARROW)){
       particle.rotate(-0.06);
