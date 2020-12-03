@@ -31,7 +31,12 @@ function newConnection(socket){
   socket.on('dissconnect', dissconnection);
 
   function dissconnection(socket){
-    
+    for (let i = 0; i < players.length; i ++){
+      if(players[i] == socket.id){
+        players.splice(i, 1);
+        playersPos.splice(i * 3, 3);
+      }
+    }      
   }
 
   socket.on('pingg', function(){
@@ -43,8 +48,21 @@ function newConnection(socket){
   function updatePos(myPos) {
     for (let i = 0; i < players.length; i++){
       if(players[i] == socket.id){
-        playersPos[i]
-    //socket.broadcast.emit('playerPos', data, playerCnt);
+        if (playersPos.length != players.length * 3){
+          splice(playersPos, myPos.x, i * 3);
+          splice(playersPos, myPos.y, (i * 3) + 1);
+          splice(playersPos, myPos.heading, (i * 3) + 2);
+        }
+        playersPos[i * 3] = myPos.x;
+        playersPos[(i * 3) + 1] = myPos.y;
+        playersPos[(i * 3) + 2] = myPos.heading;
+      }
+    }
+    var data = {
+      players: players,
+      playersPos: playersPos
+    }
+    socket.broadcast.emit('receivePos', data);
   }
 }
 
