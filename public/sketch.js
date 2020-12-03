@@ -16,6 +16,7 @@ let sliderRayAngle;
 
 let players = [];
 let playersPos = [];
+let renderPlayers = [];
 
 var socket;
 var startTime;
@@ -79,8 +80,6 @@ function setup() {
         break;
     }
     walls[i] = new Boundary(x1 * 1.5 - 650, y1 * 1.5 - 400, x2 * 1.5 - 650, y2 * 1.5 - 400);
-    console.log('x1: ' + x1);
-    console.log('y1: ' + y1);
   }
   walls.push(new Boundary(0, 0, sceneW, 0));
   walls.push(new Boundary(sceneW, 0, sceneW, sceneH));
