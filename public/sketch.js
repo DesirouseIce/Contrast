@@ -3,18 +3,19 @@ let ray;
 let particle;
 let xoff = 0;
 let yoff = 10000;
-let players = [];
 let inactivityTimer;
 let xLogged;
 let yLogged;
 let headingLogged;
-let renderObjects = [];
 let reconnectMsg = false;
 
 const sceneH = 720;
 const sceneW = 1280;
 let sliderFOV;
 let sliderRayAngle;
+
+let players = [];
+let playersPos = [];
 
 var socket;
 var startTime;
@@ -26,7 +27,7 @@ function setup() {
   frameRate(60);
 
   socket = io.connect('/');
-  socket.on('playerPos', recivePos);
+  socket.on('receivePos', recivePos);
 
   setInterval(function(){
     startTime = Date.now();
@@ -92,11 +93,15 @@ function setup() {
   // sliderRayAngle.input(changeRayAngle);
 }
 
-function recivePos(data, playerCnt) {
-  if (players.length > playerCnt) players = [];
-  let x = 3 * cos(data.heading + radians(90));
-  let y = 3 * sin(data.heading + radians(90));
-  players.push(new Boundary(data.x + x, data.y + y,data.x - x,data.y - y));
+function recivePos(data) {
+  players = data.players;
+  playersPos = data.playersPos;
+  renderPlayers = [];
+  
+  for (let i = 0; i < playersPos.length; i += 3){
+    let x = 3 * cos(playersPos[i + 2] + radians(90));
+    let y = 3 * sin(playersPos[i + 2] + radians(90));
+    renderPlayers.push(new Boundary(playersPos[i] + x, playersPos[i + 1} + y, playersPos[i] - x, playersPos[i + 1] - y));
 }
 
 function changeFOV(){
@@ -111,10 +116,10 @@ function changeRayAngle(){
 
 function draw() {
 
-  const position = createVector.fromAngle(particle.heading);
-  position.add(particle.pos.x, particle.pos.y);
   var myPos = {
-    pos: = position
+    x: particle.pos.x,
+    y: particle.pos.y,
+    heading: particle.heading
   }
 
   socket.emit('sendPos', myPos);
@@ -182,7 +187,7 @@ function draw() {
     rect(i * w + w / 2, height / 2, w + 1, h);
   }
 
-  scene = (particle.look(players));
+  scene = (particle.look(renderPlayers));
   w = width / scene.length;
   for (let i = 0; i < scene.length; i++){
     noStroke();
