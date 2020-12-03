@@ -16,6 +16,7 @@ setInterval(function(){
   });
   players = [];
   playersPos = [];
+}, 86400000);
   
 
 const io = socket(server);
