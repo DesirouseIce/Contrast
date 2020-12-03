@@ -102,6 +102,7 @@ function recivePos(data) {
     let x = 3 * cos(playersPos[i + 2] + radians(90));
     let y = 3 * sin(playersPos[i + 2] + radians(90));
     renderPlayers.push(new Boundary(playersPos[i] + x, playersPos[i + 1} + y, playersPos[i] - x, playersPos[i + 1] - y));
+  }
 }
 
 function changeFOV(){
