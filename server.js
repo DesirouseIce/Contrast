@@ -30,6 +30,8 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket){
   players.push(socket.id);
   playersPos.push(0, 0, 0);
+  console.log(socket.id + ' has connected');
+  console.log(players);
 
   socket.on('dissconnect', dissconnection);
 
@@ -38,6 +40,8 @@ function newConnection(socket){
       if(players[i] == socketID.ID){
         players.splice(i, 1);
         playersPos.splice(i * 3, 3);
+        console.log(socketID.ID + ' has disconnected');
+        console.log(players);
       }
     }
   }
