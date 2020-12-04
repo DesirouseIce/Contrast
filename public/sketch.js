@@ -149,9 +149,6 @@ function draw() {
     inactivityTimer++;
   } else if (inactivityTimer != 3000){
     inactivityTimer = 0;
-    xLogged = particle.pos.x;
-    yLogged = particle.pos.y;
-    headingLogged = particle.heading;
   }
   
   if (inactivityTimer > 300 && inactivityTimer != 3000){ 
