@@ -4,9 +4,6 @@ let particle;
 let xoff = 0;
 let yoff = 10000;
 let inactivityTimer;
-let xLogged;
-let yLogged;
-let headingLogged;
 let reconnectMsg = false;
 
 const sceneH = 720;
@@ -157,7 +154,7 @@ function draw() {
     headingLogged = particle.heading;
   }
   
-  if (inactivityTimer > 500 && inactivityTimer != 3000){ 
+  if (inactivityTimer > 300 && inactivityTimer != 3000){ 
     console.log('disconnecting');
     socket.emit('dissconnect', socketID);
     inactivityTimer = 3000;
