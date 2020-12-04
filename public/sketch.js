@@ -148,16 +148,16 @@ function draw() {
       resizeCanvas(displayWidth, displayHeight);
     }
 
-  if (particle.pos.x == xLogged && particle.pos.y == yLogged && particle.heading == headingLogged && inactivityTimer != 3000 && !focused){
+  if (!focused){
     inactivityTimer++;
-  } else if (particle.pos.x != xLogged || particle.pos.y != yLogged || particle.heading != headingLogged || inactivityTimer != 3000){
+  } else if (inactivityTimer != 3000){
     inactivityTimer = 0;
     xLogged = particle.pos.x;
     yLogged = particle.pos.y;
     headingLogged = particle.heading;
   }
   
-  if (inactivityTimer > 2500 && inactivityTimer != 3000){ 
+  if (inactivityTimer > 500 && inactivityTimer != 3000){ 
     console.log('disconnecting');
     socket.emit('dissconnect', socketID);
     inactivityTimer = 3000;
