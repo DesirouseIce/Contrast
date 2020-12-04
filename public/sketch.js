@@ -121,6 +121,9 @@ function draw() {
     y: particle.pos.y,
     heading: particle.heading
   }
+  var socketID = {
+    ID: socket.id
+  }
 
   socket.emit('sendPos', myPos);
 
@@ -156,7 +159,7 @@ function draw() {
   
   if (inactivityTimer > 2500 && inactivityTimer != 3000){ 
     console.log('disconnecting');
-    socket.emit('dissconnect');
+    socket.emit('dissconnect', socketID);
     inactivityTimer = 3000;
     reconnectMsg = true;
   }
