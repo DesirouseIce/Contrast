@@ -11,11 +11,13 @@ app.use(express.static('public'));
 const socket = require('socket.io');
 
 setInterval(function(){
+  console.log('server is rebooting...');
   getConnectedSockets().forEach(function(socket) {
     socket.disconnect(true);
   });
   players = [];
   playersPos = [];
+  console.log('server has rebooted');
 }, 86400000);
   
 
@@ -31,13 +33,13 @@ function newConnection(socket){
 
   socket.on('dissconnect', dissconnection);
 
-  function dissconnection(socket){
+  function dissconnection(socketID){
     for (let i = 0; i < players.length; i ++){
-      if(players[i] == socket.id){
+      if(players[i] == socketID.ID){
         players.splice(i, 1);
         playersPos.splice(i * 3, 3);
       }
-    }      
+    }
   }
 
   socket.on('pingg', function(){
