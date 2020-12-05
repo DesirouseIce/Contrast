@@ -2,7 +2,7 @@ console.log('server is starting...');
 
 let players = [];
 let playersPos = [];
-let disPlayers = [];
+// let disPlayers = [];
 
 const express = require('express');
 
@@ -22,15 +22,16 @@ setInterval(function(){
   console.log('server has rebooted');
 }, 86400000);
 
-setInterval(function(){
-  disPlayers = []; 
-  disPlayers.push(io.allSockets());
-  if (disPlayers.length != players.length){
-    console.log('someone(s) disconnected');
-    console.log(players);
-  }
-  players = disPlayers;
-}, 2000);
+// setInterval(function(){
+//   disPlayers = []; 
+//   for (let player in players){
+    
+//   if (disPlayers.length != players.length){
+//     console.log('someone(s) disconnected');
+//     console.log(players);
+//   }
+//   players = disPlayers;
+// }, 2000);
 
 console.log('server is running');
 
@@ -43,6 +44,17 @@ function newConnection(socket){
   socket.on('pingg', function(){
     socket.emit('pongg');
   });
+  
+  if (!socket.connected){
+    for (let player in players){
+      if (players[player] == socket.id){
+        console.log(players[player] + ' disconnected');
+        players.splice(player, 1);
+        playersPos.splice(player * 3, 3);
+        console.log(players);
+      }
+    }
+  }
 
   socket.on('sendPos', updatePos);
 
