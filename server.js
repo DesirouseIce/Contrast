@@ -12,6 +12,7 @@ const server = app.listen(process.env.PORT || 3000);
 app.use(express.static('public'));
 
 const socket = require('socket.io');
+const io = socket(server);
 
 setInterval(function(){
   console.log('server is rebooting...');
@@ -23,15 +24,13 @@ setInterval(function(){
 
 setInterval(function(){
   disPlayers = []; 
-  disPlayers.push(socket.allSockets());
+  disPlayers.push(io.allSockets());
   if (disPlayers.length != players.length){
     console.log('someone(s) disconnected');
     console.log(players);
   }
   players = disPlayers;
 }, 2000);
-
-const io = socket(server);
 
 console.log('server is running');
 
