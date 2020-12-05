@@ -13,7 +13,7 @@ const socket = require('socket.io');
 
 setInterval(function(){
   console.log('server is rebooting...');
-  getConnectedSockets().forEach(function(socket) {
+  getConnectedSockets().forEach(function(socket)) {
     socket.disconnect(true);
   });
   players = [];
