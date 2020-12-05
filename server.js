@@ -1,6 +1,6 @@
 let players = [];
 let playersPos = [];
-let disconnectedPlayers = [];
+let DP = [];
 
 const express = require('express');
 
@@ -21,21 +21,17 @@ setInterval(function(){
   console.log('server has rebooted');
 }, 86400000);
 
-setInterval(function(){
-  disconnectedPlayers = [];
-  getConnectedSockets().forEach(function(socket) {
-    disconnectedPlayers.push(socket.id);
-  }
-  for (let disconnectedPlayer in disconnectedPlayers){
-    for (let player in players){
-      if(players[player] == disconnectedPlayers[disconnectedPlayer]{
-         players.splice(player, 1);
-         playersPos.splice(player * 3, 3);
-      }
-    }
-  }
-  console.log(disconnectedPlayers + 'have disconnected');
-}, 5000);
+ setInterval(function(){
+   DP = []; 
+   getConnectedSockets().forEach(function(socket) {
+     DP.push(socket.id);
+   }
+   if (DP.length != players.length){
+    console.log('someone(s) disconnected');
+    console.log(players);
+   }
+   players = DB;
+ }, 2000);
 
 const io = socket(server);
 
@@ -46,8 +42,6 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket){
   players.push(socket.id);
   playersPos.push(0, 0, 0);
-  console.log(socket.id + ' has connected');
-  console.log(players);
 
   socket.on('pingg', function(){
     socket.emit('pongg');
