@@ -1,6 +1,6 @@
 let players = [];
 let playersPos = [];
-let DP = [];
+let disPlayers = [];
 
 const express = require('express');
 
@@ -22,15 +22,15 @@ setInterval(function(){
 }, 86400000);
 
  setInterval(function(){
-   DP = []; 
+   disPlayers = []; 
    getConnectedSockets().forEach(function(socket) {
-     DP.push(socket.id);
+     disPlayers.push(socket.id);
    }
-   if (DP.length != players.length){
+   if (disPlayers.length != players.length){
     console.log('someone(s) disconnected');
     console.log(players);
    }
-   players = DB;
+   players = disPlayers;
  }, 2000);
 
 const io = socket(server);
