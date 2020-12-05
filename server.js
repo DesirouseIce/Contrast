@@ -1,3 +1,5 @@
+console.log('server is starting...');
+
 let players = [];
 let playersPos = [];
 let disPlayers = [];
@@ -13,25 +15,21 @@ const socket = require('socket.io');
 
 setInterval(function(){
   console.log('server is rebooting...');
-  getConnectedSockets().forEach(function(socket) {
-    socket.disconnect(true);
-  });
+  io.sockets.disconnect();
   players = [];
   playersPos = [];
   console.log('server has rebooted');
 }, 86400000);
 
- setInterval(function(){
-   disPlayers = []; 
-   getConnectedSockets().forEach(function(socket) {
-     disPlayers.push(socket.id);
-   });
-   if (disPlayers.length != players.length){
+setInterval(function(){
+  disPlayers = []; 
+  disPlayers.push(socket.allSockets());
+  if (disPlayers.length != players.length){
     console.log('someone(s) disconnected');
     console.log(players);
-   }
-   players = disPlayers;
- }, 2000);
+  }
+  players = disPlayers;
+}, 2000);
 
 const io = socket(server);
 
