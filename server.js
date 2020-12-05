@@ -23,7 +23,7 @@ setInterval(function(){
 
  setInterval(function(){
    disPlayers = []; 
-   getConnectedSockets().forEach(function(socket) {
+   getConnectedSockets().forEach(function(socket)) {
      disPlayers.push(socket.id);
    }
    if (disPlayers.length != players.length){
