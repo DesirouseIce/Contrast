@@ -11,6 +11,8 @@ const sceneW = 1280;
 let sliderFOV;
 let sliderRayAngle;
 
+let posthingy = 320;
+
 let players = [];
 let playersPos = [];
 let renderPlayers = [];
@@ -87,7 +89,7 @@ function setup() {
         y2 = ((sceneH/7)+((4.5*sceneH))/7);
         break;
     }
-    walls[i] = new Boundary(x1 * 1.5 - 650, y1 * 1.5 - 370, x2 * 1.5 - 650, y2 * 1.5 - 370);
+    walls[i] = new Boundary(x1 * 1.5 - 650, y1 * 1.5 - posthingy, x2 * 1.5 - 650, y2 * 1.5 - posthingy);
   }
   walls.push(new Boundary(0, 0, sceneW, 0));
   walls.push(new Boundary(sceneW, 0, sceneW, sceneH));
