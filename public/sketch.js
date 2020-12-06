@@ -134,8 +134,8 @@ function keyPressed() {
     const hitPlayer = particle.shoot(shootObjects, players, renderPlayers);
     console.log(hitPlayer);
     if (hitPlayer != 'noHit'){
-      for (let player of players){
-        if (players[player] == hitPlayer){
+      for (let i = 0; i < players.length; i++){
+        if (players[i] == hitPlayer){
           socket.emit('hitPlayer', hitPlayer);
           console.log('shot ' + hitPlayer);
         }
