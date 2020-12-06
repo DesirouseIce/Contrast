@@ -99,6 +99,12 @@ function recivePos(data) {
   players = data.players;
   playersPos = data.playersPos;
   renderPlayers = [];
+  for (let i = 0; i < players.length; i++){
+    if (players[i] == socket.id){
+      players.splice(i, 1);
+      playersPos.splice(i * 3, 3);
+    }
+  }
   
   for (let i = 0; i < playersPos.length; i += 3){
     if (playersPos[i] != particle.pos.x && playersPos[i] != particle.pos.y){
