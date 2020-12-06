@@ -26,7 +26,7 @@ console.log('server is running');
 
 io.sockets.on('hitPlayer', function(hitPlayer){
   io.to(hitPlayer).emit('hit');
-}
+});
 
 io.sockets.on('connection', newConnection);
 
