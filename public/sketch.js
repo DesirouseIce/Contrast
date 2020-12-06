@@ -244,7 +244,7 @@ function draw() {
   text("Y: " + round(particle.pos.y), 10, 80);
   if (reconnectMsg){
     text('Disconnected due to inactivity, to reconnect refresh the page', width/4, height/2);
-    socket.close();
+    socket.disconnect();
   }
   pop();
 }
