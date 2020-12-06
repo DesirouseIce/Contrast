@@ -6,6 +6,8 @@ let yoff = 10000;
 let inactivityTimer;
 let reconnectMsg = false;
 
+let posthingy = 100;
+
 const sceneH = 720;
 const sceneW = 1280;
 let sliderFOV;
@@ -234,6 +236,6 @@ function draw() {
   text(round(latency) + 'ms', 10, 40);
   text("X: " + round(particle.pos.x), 10, 60);
   text("Y: " + round(particle.pos.y), 10, 80);
-  text('alpha-release-0.1', width - 40, 20);
+  text('alpha-release-0.1', width - posthingy, 20);
   pop();
 }
