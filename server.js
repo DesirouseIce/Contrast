@@ -24,10 +24,6 @@ setInterval(function(){
 
 console.log('server is running');
 
-io.sockets.on('hitPlayer', function(hitPlayer){
-  io.to(hitPlayer).emit('hit');
-});
-
 io.sockets.on('connection', newConnection);
 
 function newConnection(socket){
@@ -36,6 +32,10 @@ function newConnection(socket){
 
   socket.on('pingg', function(){
     socket.emit('pongg');
+  });
+  
+  socket.on('hitPlayer', function(hitPlayer){
+    io.to(hitPlayer).emit('hit');
   });
   
   if (!socket.connected){
