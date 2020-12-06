@@ -123,7 +123,7 @@ function keyPressed() {
     shootObjects = walls;
     shootObjects.push(renderPlayers);
     const hitPlayer = particle.shoot(shootObjects, players, playersPos);
-    if (hitPlayer){
+    if (hitPlayer != null){
       for (let player of players){
         if (players[player] == hitPlayer){
           socket.emit('hitPlayer', hitPlayer);
