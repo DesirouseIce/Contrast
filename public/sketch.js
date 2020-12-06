@@ -171,7 +171,7 @@ function draw() {
   }
   if (keyIsDown(87)){
     particle.move(3, walls, playerSize);
-    socket.disconnect();
+    socket.close();
   } else if (keyIsDown(83)){
     particle.move(-3, walls, playerSize);
   }
@@ -244,7 +244,7 @@ function draw() {
   text("Y: " + round(particle.pos.y), 10, 80);
   if (reconnectMsg){
     text('Disconnected due to inactivity, to reconnect refresh the page', width/4, height/2);
-    socket.disconnect();
+    socket.close();
   }
   pop();
 }
