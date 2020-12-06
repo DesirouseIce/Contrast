@@ -35,7 +35,7 @@ function newConnection(socket){
     socket.emit('pongg');
   });
   
-  socket.io.on('disconnect', () => {
+  if (socket.connected() == false){
     for (i = 0; i < players; i++){
       if (players[i] == socket.id){
         console.log(players[i] + ' disconnected');
@@ -44,7 +44,7 @@ function newConnection(socket){
         console.log(players);
       }
     }
-  });
+  }
   
   socket.on('hitPlayer', function(hitPlayer){
     io.to(hitPlayer).emit('hit');
