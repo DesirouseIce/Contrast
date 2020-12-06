@@ -22,18 +22,11 @@ setInterval(function(){
   console.log('server has rebooted');
 }, 86400000);
 
-// setInterval(function(){
-//   disPlayers = []; 
-//   for (let player in players){
-    
-//   if (disPlayers.length != players.length){
-//     console.log('someone(s) disconnected');
-//     console.log(players);
-//   }
-//   players = disPlayers;
-// }, 2000);
-
 console.log('server is running');
+
+io.sockets.on('hitPlayer', function(hitPlayer){
+  io.to(hitPlayer).emit('hit');
+}
 
 io.sockets.on('connection', newConnection);
 
@@ -72,8 +65,4 @@ function newConnection(socket){
     }
     socket.broadcast.emit('receivePos', data);
   }
-}
-
-function getConnectedSockets() {
-  return Object.values(io.of("/").connected);
 }
