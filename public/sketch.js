@@ -45,6 +45,10 @@ function setup() {
   socket.on('pongg', function(){
     latency = Date.now() - startTime;
   });
+  
+  socket.on('pinggg', function(){
+    socket.emit('ponggg');
+  });
 
   let x1;
   let x2;
@@ -117,8 +121,8 @@ function recivePos(data) {
 }
 
 function changeFOV(){
-  const fov = /*sliderFOV.value()*/90;
-  particle.updateFOV(fov);
+  //const fov = sliderFOV.value();
+  //particle.updateFOV(fov);
 }
 
 function changeRayAngle(){
