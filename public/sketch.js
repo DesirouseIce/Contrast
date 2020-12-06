@@ -6,8 +6,6 @@ let yoff = 10000;
 let inactivityTimer;
 let reconnectMsg = false;
 
-let posthingy = 100;
-
 const sceneH = 720;
 const sceneW = 1280;
 let sliderFOV;
@@ -89,7 +87,7 @@ function setup() {
         y2 = ((sceneH/7)+((4.5*sceneH))/7);
         break;
     }
-    walls[i] = new Boundary(x1 * 1.5 - 650, y1 * 1.5 - 400, x2 * 1.5 - 650, y2 * 1.5 - 400);
+    walls[i] = new Boundary(x1 * 1.5 - 650, y1 * 1.5 - 370, x2 * 1.5 - 650, y2 * 1.5 - 370);
   }
   walls.push(new Boundary(0, 0, sceneW, 0));
   walls.push(new Boundary(sceneW, 0, sceneW, sceneH));
@@ -236,6 +234,6 @@ function draw() {
   text(round(latency) + 'ms', 10, 40);
   text("X: " + round(particle.pos.x), 10, 60);
   text("Y: " + round(particle.pos.y), 10, 80);
-  text('alpha-release-0.1', width - posthingy, 20);
+  text('alpha-release-0.1', width - 110, 20);
   pop();
 }
