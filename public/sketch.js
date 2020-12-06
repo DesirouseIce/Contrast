@@ -126,7 +126,7 @@ function keyPressed() {
   } else if (keyCode == UP_ARROW){
     shootObjects = walls;
     shootObjects.push(renderPlayers);
-    const hitPlayer = particle.shoot(shootObjects, players, playersPos);
+    const hitPlayer = particle.shoot(shootObjects, players, renderPlayers);
     console.log(hitPlayer);
     if (hitPlayer != 'noHit'){
       for (let player of players){
