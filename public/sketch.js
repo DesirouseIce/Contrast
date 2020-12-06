@@ -14,6 +14,7 @@ let sliderRayAngle;
 let players = [];
 let playersPos = [];
 let renderPlayers = [];
+let shootObjects = [];
 
 var socket;
 var startTime;
@@ -119,6 +120,8 @@ function keyPressed() {
     fullscreen(1);
     resizeCanvas(displayWidth, displayHeight);
   } else if (keyCode == UP_ARROW){
+    shootObjects = walls;
+    shootObjects.push(playersPos);
     const hitPlayer = particle.shoot(renderObjects, players, playersPos);
     for (let player of players){
       if (players[player] == hitPlayer){
