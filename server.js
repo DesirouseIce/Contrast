@@ -35,16 +35,16 @@ function newConnection(socket){
     socket.emit('pongg');
   });
   
-  if (socket.connected() == false){
+  socket.on('dissconnect', function(socketID){
     for (i = 0; i < players; i++){
-      if (players[i] == socket.id){
-        console.log(players[i] + ' disconnected');
+      if (players[i] == socketID){
         players.splice(i, 1);
         playersPos.splice(i * 3, 3);
+        console.log(socketID + ' disconnected');
         console.log(players);
       }
     }
-  }
+  });
   
   socket.on('hitPlayer', function(hitPlayer){
     io.to(hitPlayer).emit('hit');
