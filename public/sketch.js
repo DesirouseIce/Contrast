@@ -185,12 +185,6 @@ function draw() {
   } else if (inactivityTimer != 3000){
     inactivityTimer = 0;
   }
-  
-  if (inactivityTimer > 300 && inactivityTimer != 3000){ 
-    console.log('disconnecting');
-    inactivityTimer = 3000;
-    reconnectMsg = true;
-  }
 
   background(0);
     // for(let wall of walls){  // - shows walls for 2d map
@@ -240,9 +234,6 @@ function draw() {
   text(round(latency) + 'ms', 10, 40);
   text("X: " + round(particle.pos.x), 10, 60);
   text("Y: " + round(particle.pos.y), 10, 80);
-  if (reconnectMsg){
-    text('Disconnected due to inactivity, to reconnect refresh the page', width/4, height/2);
-    socket.close();
-  }
+  text('alpha-release-0.1', width - 15, 20
   pop();
 }
