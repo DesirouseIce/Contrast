@@ -234,6 +234,6 @@ function draw() {
   text(round(latency) + 'ms', 10, 40);
   text("X: " + round(particle.pos.x), 10, 60);
   text("Y: " + round(particle.pos.y), 10, 80);
-  text('alpha-release-0.1', width - 15, 20
+  text('alpha-release-0.1', width - 15, 20);
   pop();
 }
