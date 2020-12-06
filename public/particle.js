@@ -43,7 +43,7 @@ class Particle {
     vel.setMag(amt);
     this.pos.add(vel);
     let collision = false;
-    for(let i = 0; i < walls.length; i++){
+    for(let i = 0; i < walls.length - 1; i++){
       if (collideLineCircleVector(walls[i].a, walls[i].b, this.pos, abs(amt))) collision = true;
     }
     if (collision) this.pos.sub(vel);
