@@ -26,6 +26,9 @@ function setup() {
 
   socket = io.connect('/');
   socket.on('receivePos', recivePos);
+  socket.on('hit', function(){
+    particle.respawn(sceneW, sceneH);
+  });
 
   setInterval(function(){
     startTime = Date.now();
@@ -111,6 +114,20 @@ function changeRayAngle(){
   //particle.updateRayAngle(rAngle);
 }
 
+function keyPressed() {
+  if (key == 'f'){
+    fullscreen(1);
+    resizeCanvas(displayWidth, displayHeight);
+  } else if (keyCode == UP_ARROW){
+    const hitPlayer = particle.shoot(renderObjects, players, playersPos);
+    for (let player of players){
+      if (players[player] == hitPlayer){
+        socket.emit('hitPlayer', hitPlayer);
+      }
+    }
+  }
+}
+
 function draw() {
 
   var myPos = {
@@ -124,26 +141,21 @@ function draw() {
 
   socket.emit('sendPos', myPos);
 
-    if (keyIsDown(LEFT_ARROW)){
-      particle.rotate(-0.06);
-    } else if (keyIsDown(RIGHT_ARROW)){
-      particle.rotate(0.06);
-    }
-    if (keyIsDown(87)){
-      particle.move(3, walls);
-    } else if (keyIsDown(83)){
-      particle.move(-3, walls);
-    }
-    if (keyIsDown(65)){
-      particle.strafe(-3, walls);
-    } else if (keyIsDown(68)){
-      particle.strafe(3, walls);
-    }
-  
-    if (key == "f"){
-      fullscreen(1);
-      resizeCanvas(displayWidth, displayHeight);
-    }
+  if (keyIsDown(LEFT_ARROW)){
+    particle.rotate(-0.06);
+  } else if (keyIsDown(RIGHT_ARROW)){
+    particle.rotate(0.06);
+  }
+  if (keyIsDown(87)){
+    particle.move(3, walls);
+  } else if (keyIsDown(83)){
+    particle.move(-3, walls);
+  }
+  if (keyIsDown(65)){
+    particle.strafe(-3, walls);
+  } else if (keyIsDown(68)){
+    particle.strafe(3, walls);
+  }
 
   if (!focused){
     inactivityTimer++;
