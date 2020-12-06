@@ -27,7 +27,9 @@ function setup() {
 
   socket = io.connect('/');
   socket.on('receivePos', recivePos);
-  socket.on('hit', function(){
+  
+  aocket.on('hit', function(){
+    console.log('died');
     particle.respawn(sceneW, sceneH);
   });
 
@@ -99,9 +101,11 @@ function recivePos(data) {
   renderPlayers = [];
   
   for (let i = 0; i < playersPos.length; i += 3){
-    let x = 3 * cos(playersPos[i + 2] + radians(90));
-    let y = 3 * sin(playersPos[i + 2] + radians(90));
-    renderPlayers.push(new Boundary(playersPos[i] + x, playersPos[i + 1] + y, playersPos[i] - x, playersPos[i + 1] - y));
+    if (playersPos[i] != particle.pos.x && playersPos[i] != particle.pos.y){
+      let x = 3 * cos(playersPos[i + 2] + radians(90));
+      let y = 3 * sin(playersPos[i + 2] + radians(90));
+      renderPlayers.push(new Boundary(playersPos[i] + x, playersPos[i + 1] + y, playersPos[i] - x, playersPos[i + 1] - y));
+    }
   }
 }
 
@@ -127,6 +131,7 @@ function keyPressed() {
       for (let player of players){
         if (players[player] == hitPlayer){
           socket.emit('hitPlayer', hitPlayer);
+          console.log('shot ' + hitPlayer);
         }
       }
     }
