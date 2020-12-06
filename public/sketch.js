@@ -171,7 +171,6 @@ function draw() {
   }
   if (keyIsDown(87)){
     particle.move(3, walls, playerSize);
-    socket.close();
   } else if (keyIsDown(83)){
     particle.move(-3, walls, playerSize);
   }
