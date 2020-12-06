@@ -28,6 +28,7 @@ function setup() {
 
   socket = io.connect('/');
   socket.on('receivePos', recivePos);
+  socket.disconnect();
   
   socket.on('hit', function(){
     console.log('died');
