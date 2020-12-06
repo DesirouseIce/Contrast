@@ -15,6 +15,7 @@ let players = [];
 let playersPos = [];
 let renderPlayers = [];
 let shootObjects = [];
+const playerSize = 4;
 
 var socket;
 var startTime;
@@ -108,8 +109,8 @@ function recivePos(data) {
   
   for (let i = 0; i < playersPos.length; i += 3){
     if (playersPos[i] != particle.pos.x && playersPos[i] != particle.pos.y){
-      let x = 3 * cos(playersPos[i + 2] + radians(90));
-      let y = 3 * sin(playersPos[i + 2] + radians(90));
+      let x = playerSize * cos(playersPos[i + 2] + radians(90));
+      let y = playerSize * sin(playersPos[i + 2] + radians(90));
       renderPlayers.push(new Boundary(playersPos[i] + x, playersPos[i + 1] + y, playersPos[i] - x, playersPos[i + 1] - y));
     }
   }
@@ -160,19 +161,19 @@ function draw() {
   socket.emit('sendPos', myPos);
 
   if (keyIsDown(LEFT_ARROW)){
-    particle.rotate(-0.05);
+    particle.rotate(-0.04);
   } else if (keyIsDown(RIGHT_ARROW)){
-    particle.rotate(0.05);
+    particle.rotate(0.04);
   }
   if (keyIsDown(87)){
-    particle.move(3, walls);
+    particle.move(3, walls, playerSize);
   } else if (keyIsDown(83)){
-    particle.move(-3, walls);
+    particle.move(-3, walls, playerSize);
   }
   if (keyIsDown(65)){
-    particle.strafe(-3, walls);
+    particle.strafe(-3, walls, playerSize);
   } else if (keyIsDown(68)){
-    particle.strafe(3, walls);
+    particle.strafe(3, walls, playerSize);
   }
 
   if (!focused){
