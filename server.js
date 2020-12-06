@@ -29,6 +29,7 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket){
   players.push(socket.id);
   playersPos.push(0, 0, 0);
+  console.log(players);
 
   socket.on('pingg', function(){
     socket.emit('pongg');
@@ -45,6 +46,7 @@ function newConnection(socket){
   });
   if ((Date.now() - startTime) > 4000){
     socket.disconnect();
+    console.log(players);
   }
   
   socket.on('hitPlayer', function(hitPlayer){
