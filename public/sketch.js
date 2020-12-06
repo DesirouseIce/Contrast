@@ -87,7 +87,7 @@ function setup() {
         y2 = ((sceneH/7)+((4.5*sceneH))/7);
         break;
     }
-    walls[i] = new Boundary(x1 * 1.6 - 700, y1 * 1.6 - 400, x2 * 1.6 - 700, y2 * 1.6 - 400);
+    walls[i] = new Boundary(x1 * 1.6 - 820, y1 * 1.6 - 470, x2 * 1.6 - 820, y2 * 1.6 - 470);
   }
   walls.push(new Boundary(0, 0, sceneW, 0));
   walls.push(new Boundary(sceneW, 0, sceneW, sceneH));
