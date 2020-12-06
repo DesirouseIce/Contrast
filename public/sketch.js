@@ -121,8 +121,8 @@ function keyPressed() {
     resizeCanvas(displayWidth, displayHeight);
   } else if (keyCode == UP_ARROW){
     shootObjects = walls;
-    shootObjects.push(playersPos);
-    const hitPlayer = particle.shoot(renderObjects, players, playersPos);
+    shootObjects.push(renderPlayers);
+    const hitPlayer = particle.shoot(shootObjects, players, playersPos);
     for (let player of players){
       if (players[player] == hitPlayer){
         socket.emit('hitPlayer', hitPlayer);
