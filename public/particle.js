@@ -109,7 +109,6 @@ class Particle {
     }
     let hit = 'noHit';
     for (let i = 0; i < players.length; i++){
-      console.log(closest);
       if (collidePointLine(closest.x, closest.y, renderPlayers[i].a.x, renderPlayers[i].a.y, renderPlayers[i].b.x, renderPlayers[i].b.y)){
         hit = players[i];
       }
