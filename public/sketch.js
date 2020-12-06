@@ -134,7 +134,10 @@ function keyPressed() {
 }
 
 function draw() {
-
+  if (walls.length > 9){
+    walls.splice(10, walls.length - 9);
+  }
+  
   var myPos = {
     x: particle.pos.x,
     y: particle.pos.y,
@@ -185,9 +188,6 @@ function draw() {
    //xoff += 0.01;
    //yoff += 0.01;
   
-  if (walls.length > 9){
-    walls.splice(10, walls.length - 9);
-  }
   let scene = (particle.look(walls));
   let w = width / scene.length;
   push();
