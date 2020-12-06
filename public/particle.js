@@ -95,8 +95,7 @@ class Particle {
     const ray = new Ray(this.pos, this.heading);
     let closest = null;
     let record = Infinity;
-    for (let i = 0; i < shootObjects.length; i++){
-      console.log(i);
+    for (let i = 0; i < shootObjects.length - 1; i++){
       const pt = ray.cast(shootObjects[i]);
       if (pt){
         let d = p5.Vector.dist(this.pos, pt);
@@ -109,7 +108,8 @@ class Particle {
       }
     }
     let hit = 'noHit';
-    for (let i = 0; i < players.length - 1; i++){
+    for (let i = 0; i < players.length; i++){
+      console.log(closest);
       if (collidePointLine(closest.x, closest.y, renderPlayers[i].a.x, renderPlayers[i].a.y, renderPlayers[i].b.x, renderPlayers[i].b.y)){
         hit = players[i];
       }
