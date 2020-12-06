@@ -34,6 +34,19 @@ function newConnection(socket){
     socket.emit('pongg');
   });
   
+  var startTime;
+  var latency;
+  setInterval(function(){
+    startTime = Date.now();
+    socket.emit('pinggg');
+  }, 5000);
+  socket.on('ponggg', function(){
+    latency = Date.now() - startTime;
+  });
+  if ((Date.now() - startTime) > 4000){
+    socket.disconnect();
+  }
+  
   socket.on('hitPlayer', function(hitPlayer){
     io.to(hitPlayer).emit('hit');
   });
