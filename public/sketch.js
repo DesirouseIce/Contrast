@@ -188,7 +188,6 @@ function draw() {
   
   if (inactivityTimer > 300 && inactivityTimer != 3000){ 
     console.log('disconnecting');
-    socket.emit('dissconnect', socketID);
     inactivityTimer = 3000;
     reconnectMsg = true;
   }
