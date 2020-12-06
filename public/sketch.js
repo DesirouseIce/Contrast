@@ -28,7 +28,7 @@ function setup() {
   socket = io.connect('/');
   socket.on('receivePos', recivePos);
   
-  aocket.on('hit', function(){
+  socket.on('hit', function(){
     console.log('died');
     particle.respawn(sceneW, sceneH);
   });
