@@ -38,24 +38,24 @@ class Particle {
     }
   }
   
-  move(amt, walls){  // - particle/player foward and backward movement
+  move(amt, walls, playerSize){  // - particle/player foward and backward movement
     const vel = p5.Vector.fromAngle(this.heading);
     vel.setMag(amt);
     this.pos.add(vel);
     let collision = false;
     for(let i = 0; i < walls.length; i++){
-      if (collideLineCircleVector(walls[i].a, walls[i].b, this.pos, abs(amt))) collision = true;
+      if (collideLineCircleVector(walls[i].a, walls[i].b, this.pos, playerSize)) collision = true;
     }
     if (collision) this.pos.sub(vel);
   }
   
-  strafe(amt, walls){ // - particle/player strafe movement
+  strafe(amt, walls, playerSize){ // - particle/player strafe movement
     const vel = p5.Vector.fromAngle(this.heading + radians(90));
     vel.setMag(amt);
     this.pos.add(vel);
     let collision = false;
     for(let i = 0; i < walls.length; i++){
-      if (collideLineCircleVector(walls[i].a,walls[i].b,this.pos, abs(amt))) collision = true;
+      if (collideLineCircleVector(walls[i].a,walls[i].b,this.pos, playerSize)) collision = true;
     }
     if (collision) this.pos.sub(vel);
   }
