@@ -127,6 +127,7 @@ function keyPressed() {
     shootObjects = walls;
     shootObjects.push(renderPlayers);
     const hitPlayer = particle.shoot(shootObjects, players, playersPos);
+    console.log(hitPlayer);
     if (hitPlayer != 'noHit'){
       for (let player of players){
         if (players[player] == hitPlayer){
