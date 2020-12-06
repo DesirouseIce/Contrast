@@ -107,12 +107,13 @@ class Particle {
         }
       }
     }
+    let hit = 'noHit';
     for (let i = 0; i < players.length; i++){
       if (collidePointCircle(pt.x, pt.y, playersPos[i * 3], playersPos[(i * 3) + 1], 3)){
-        const hit = players[i];
+        hit = players[i];
       }
     }
-    if (hit != 'undefined) return hit;
+    return hit;
   }
           
   respawn(sceneW, sceneH){
