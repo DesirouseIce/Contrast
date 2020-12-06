@@ -31,16 +31,23 @@ function newConnection(socket){
   playersPos.push(0, 0, 0);
   console.log(players);
 
+//   var startTime = 0;
   socket.on('pingg', function(){
     socket.emit('pongg');
   });
+//     startTime = Date.now();
+//   });
+//   if ((Date.now() - startTime) > 3000){
+//     for (i = 0; i < players; i++){
+//       if (players[i] == socket.id){
+//         players.splice(i, 1)
   
-  socket.on('dissconnect', function(socketID){
-    for (i = 0; i < players; i++){
-      if (players[i] == socketID){
+  socket.on('disconnect', function(){
+    for (i = 0; i < players.length; i++){
+      if (players[i] == socket.id){
         players.splice(i, 1);
         playersPos.splice(i * 3, 3);
-        console.log(socketID + ' disconnected');
+        console.log(socket.id + ' disconnected');
         console.log(players);
       }
     }
