@@ -35,34 +35,20 @@ function newConnection(socket){
     socket.emit('pongg');
   });
   
-  var startTime;
-  var latency;
-  setInterval(function(){
-    startTime = Date.now();
-    socket.emit('pinggg');
-  }, 5000);
-  socket.on('ponggg', function(){
-    latency = Date.now() - startTime;
+  socket.on('disconnect', function(){
+    for (i = 0; i < players; i++){
+      if (players[i] == socket.id){
+        console.log(players[i] + ' disconnected');
+        players.splice(i, 1);
+        playersPos.splice(i * 3, 3);
+        console.log(players);
+      }
+    }
   });
-  if ((Date.now() - startTime) > 4000){
-    socket.disconnect();
-    console.log(players);
-  }
   
   socket.on('hitPlayer', function(hitPlayer){
     io.to(hitPlayer).emit('hit');
   });
-  
-  if (!socket.connected){
-    for (let player in players){
-      if (players[player] == socket.id){
-        console.log(players[player] + ' disconnected');
-        players.splice(player, 1);
-        playersPos.splice(player * 3, 3);
-        console.log(players);
-      }
-    }
-  }
 
   socket.on('sendPos', updatePos);
 
