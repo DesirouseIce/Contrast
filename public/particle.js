@@ -108,7 +108,7 @@ class Particle {
       }
     }
     for (let i = 0; i < players.length; i++){
-      if (collidePointCircle(pt.x, pt.y, playersPos[i * 3], playersPos[(i * 3) + 1], 3){
+      if (collidePointCircle(pt.x, pt.y, playersPos[i * 3], playersPos[(i * 3) + 1], 3)){
         const hit = players[i];
       }
     }
