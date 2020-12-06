@@ -91,7 +91,7 @@ class Particle {
     return scene;
   }
   
-  shoot(shootObjects, players, playersPos) {
+  shoot(shootObjects, players, renderPlayers) {
     const ray = new Ray(this.pos, this.heading);
     let closest = null;
     let record = Infinity;
@@ -109,7 +109,7 @@ class Particle {
     }
     let hit = 'noHit';
     for (let i = 0; i < players.length; i++){
-      if (collidePointCircle(closest.x, closest.y, playersPos[i * 3], playersPos[(i * 3) + 1], 50)){
+      if (collidePointLine(closest.x, closest.y, renderPlayers[i].a.x, renderPlayers[i].a.y, renderPlayers[i].b.x, renderPlayers[i].b.y){
         hit = players[i];
       }
     }
