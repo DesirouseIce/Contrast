@@ -130,8 +130,7 @@ function keyPressed() {
     fullscreen(1);
     resizeCanvas(displayWidth, displayHeight);
   } else if (keyCode == UP_ARROW){
-    shootObjects = walls;
-    shootObjects.push(renderPlayers);
+    shootObjects = walls.concat(renderPlayers);
     const hitPlayer = particle.shoot(shootObjects, players, renderPlayers);
     console.log(hitPlayer);
     if (hitPlayer != 'noHit'){
