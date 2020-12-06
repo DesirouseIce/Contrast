@@ -70,7 +70,7 @@ class Particle {
       const ray = this.rays[i];
       let closest = null;
       let record = Infinity;
-      for (let wall of walls){
+      for (let wall of walls - 1){
         const pt = ray.cast(wall);
         if (pt){
           let d = p5.Vector.dist(this.pos, pt);
