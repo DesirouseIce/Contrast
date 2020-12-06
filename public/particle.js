@@ -1,6 +1,6 @@
 class Particle {
   constructor(sceneW, sceneH) {
-    this.fov = 90;
+    this.fov = 110;
     this.rAngle = 0.1; // - ray angle (adjusts the resolution and amt of rays)
     this.spawnloc = [10, sceneW - 10];
     this.pos = createVector(random(this.spawnloc), random(sceneH/2 - 40, sceneH/2 + 40));
