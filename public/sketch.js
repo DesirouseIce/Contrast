@@ -147,9 +147,9 @@ function draw() {
   socket.emit('sendPos', myPos);
 
   if (keyIsDown(LEFT_ARROW)){
-    particle.rotate(-0.06);
+    particle.rotate(-0.05);
   } else if (keyIsDown(RIGHT_ARROW)){
-    particle.rotate(0.06);
+    particle.rotate(0.05);
   }
   if (keyIsDown(87)){
     particle.move(3, walls);
