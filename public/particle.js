@@ -43,7 +43,7 @@ class Particle {
     vel.setMag(amt);
     this.pos.add(vel);
     let collision = false;
-    for(let i = 0; i < walls.length - 1; i++){
+    for(let i = 0; i < walls.length; i++){
       if (collideLineCircleVector(walls[i].a, walls[i].b, this.pos, abs(amt))) collision = true;
     }
     if (collision) this.pos.sub(vel);
@@ -54,7 +54,7 @@ class Particle {
     vel.setMag(amt);
     this.pos.add(vel);
     let collision = false;
-    for(let i = 0; i < walls.length - 1; i++){
+    for(let i = 0; i < walls.length; i++){
       if (collideLineCircleVector(walls[i].a,walls[i].b,this.pos, abs(amt))) collision = true;
     }
     if (collision) this.pos.sub(vel);
@@ -70,8 +70,8 @@ class Particle {
       const ray = this.rays[i];
       let closest = null;
       let record = Infinity;
-      for (let wall = 0; wall < walls.length - 1; wall++){
-        const pt = ray.cast(walls[wall]);
+      for (let wall of walls){
+        const pt = ray.cast(wall);
         if (pt){
           let d = p5.Vector.dist(this.pos, pt);
           const a = ray.dir.heading() - this.heading;  // - calculates diffirent projection method
