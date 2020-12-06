@@ -112,7 +112,7 @@ class Particle {
         const hit = players[i];
       }
     }
-    return hit;
+    if (hit) return hit;
   }
           
   respawn(sceneW, sceneH){
