@@ -8,9 +8,9 @@ class Particle {
     if (this.pos.x > sceneW/2){
       this.heading = PI/1;
     } else this.heading = 0;
-    for (let a = -this.fov/2; a < this.fov/2; a += this.rAngle) { // - set's up rays
+    for (let a = -this.fov/2; a < this.fov/2; a += this.rAngle) {                // - set's up rays
       this.rays.push(new Ray(this.pos, radians(a) + this.heading));              // -
-    }                                                             // -
+    }                                                                            // -
   }
   
   updateFOV(fov){ // - updates the FOV from slider input
@@ -44,7 +44,7 @@ class Particle {
     this.pos.add(vel);
     let collision = false;
     for(let i = 0; i < walls.length; i++){
-      if (collideLineCircleVector(walls[i].a,walls[i].b,this.pos, abs(amt))) collision = true;
+      if (collideLineCircleVector(walls[i].a, walls[i].b, this.pos, abs(amt))) collision = true;
     }
     if (collision) this.pos.sub(vel);
   }
@@ -82,13 +82,51 @@ class Particle {
           }
         }
       }
-      if (closest){
-        stroke(255, 100);
-        //line(this.pos.x, this.pos.y, closest.x, closest.y);
-      }
+//       if (closest){
+//         stroke(255, 100);
+//         line(this.pos.x, this.pos.y, closest.x, closest.y);
+//       }
       scene[i] = record;
     }
     return scene;
+  }
+  
+  shoot(shootObjects, players, playersPos) {
+    const ray = new Ray(this.pos, this.heading);
+    let closest = null;
+    let record = Infinity;
+    for (let object of shootObjects){
+      const pt = ray.cast(object);
+      if (pt){
+        let d = p5.Vector.dist(this.pos, pt);
+        const a = ray.dir.heading() - this.heading;
+        d *= cos(a);
+        if (d < record){
+          record = d;
+          closest = pt;
+        }
+      }
+    }
+    for (let i = 0; i < players.length; i++){
+      if (collidePointCircle(pt.x, pt.y, playersPos[i * 3], playersPos[(i * 3) + 1], 3){
+        const hit = players[i];
+      }
+    }
+    return hit;
+  }
+          
+  respawn(sceneW, sceneH){
+    this.fov = 90;
+    this.rAngle = 0.1; // - ray angle (adjusts the resolution and amt of rays)
+    this.spawnloc = [10, sceneW - 10];
+    this.pos = createVector(random(this.spawnloc), random(sceneH/2 - 40, sceneH/2 + 40));
+    this.rays = [];
+    if (this.pos.x > sceneW/2){
+      this.heading = PI/1;
+    } else this.heading = 0;
+    for (let a = -this.fov/2; a < this.fov/2; a += this.rAngle) {                // - set's up rays
+      this.rays.push(new Ray(this.pos, radians(a) + this.heading));              // -
+    }                                                                            // -
   }
 
   show() {   // - displays everything for 2d map
