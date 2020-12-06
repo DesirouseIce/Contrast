@@ -95,7 +95,7 @@ class Particle {
     const ray = new Ray(this.pos, this.heading);
     let closest = null;
     let record = Infinity;
-    for (let i = 0; i < shootObjects.length - 1; i++){
+    for (let i = 0; i < shootObjects.length; i++){
       const pt = ray.cast(shootObjects[i]);
       if (pt){
         let d = p5.Vector.dist(this.pos, pt);
