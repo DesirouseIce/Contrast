@@ -70,8 +70,8 @@ class Particle {
       const ray = this.rays[i];
       let closest = null;
       let record = Infinity;
-      for (let wall = 0; wall < walls.length - 5; wall++){
-        const pt = ray.cast(wall);
+      for (let wall = 0; wall < walls.length - 1; wall++){
+        const pt = ray.cast(walls[wall]);
         if (pt){
           let d = p5.Vector.dist(this.pos, pt);
           const a = ray.dir.heading() - this.heading;  // - calculates diffirent projection method
